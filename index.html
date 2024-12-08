@@ -3,7 +3,30 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Mi Tienda Online</title>
+    <title>SagitarioJBL - Tienda de JBL, Xiaomi y más</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="SagitarioJBL, tu tienda online para productos JBL, Xiaomi y otros dispositivos electrónicos. Encuentra altavoces, auriculares y más.">
+    <meta name="keywords" content="JBL, Xiaomi, altavoces, auriculares, electrónica, tienda online, comprar JBL, Xiaomi productos, SagitarioJBL">
+    <meta name="author" content="SagitarioJBL">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="SagitarioJBL - Tienda online de JBL y más">
+    <meta property="og:description" content="Encuentra altavoces, auriculares y otros dispositivos electrónicos de las mejores marcas como JBL y Xiaomi en SagitarioJBL.">
+    <meta property="og:image" content="https://i.ibb.co/swShCSf/image.png">
+    <meta property="og:url" content="https://tusitioweb.com/sagitariojbl">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SagitarioJBL - Tienda online de JBL y más">
+    <meta name="twitter:description" content="Compra los mejores dispositivos electrónicos, altavoces y auriculares de marcas como JBL y Xiaomi en SagitarioJBL.">
+    <meta name="twitter:image" content="https://i.ibb.co/swShCSf/image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://i.ibb.co/swShCSf/image.png" type="image/png">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-O+IT6IXFbqv7+TQ1rNqpAUuaNCWyBO6UVBd8i4OhS9nF6VfT8GNdTu5/c1LsiBfFl8J7LblrBYHY/u3XfHOo9w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
@@ -67,8 +90,9 @@
             justify-content: center; 
             gap: 1.5rem;
         }
+        /* Color de las letras del menú: naranja y al pasar el ratón negro */
         header nav a {
-            color: var(--color-texto-claro); 
+            color: var(--color-primario);
             text-decoration: none; 
             display: inline-flex; 
             align-items: center;
@@ -76,7 +100,10 @@
             font-size:0.95rem; 
             transition: color 0.2s ease;
         }
-        header nav a:hover { color: var(--color-hover); }
+        header nav a:hover {
+            color: #000; 
+        }
+
         header .cart-button {
             cursor: pointer; 
             background: var(--color-secundario); 
@@ -103,7 +130,6 @@
             color: var(--color-texto-claro); 
             overflow: hidden;
             text-shadow: 0px 0px 5px rgba(0,0,0,0.7);
-            /* Se mantiene sin fondo para no interferir con las imágenes */
         }
         .banner .banner-image-container {
             position: absolute; 
@@ -434,34 +460,43 @@
             font-size: 1.8rem; 
             color: var(--color-texto);
         }
+
+        /* Íconos redondos en la sección de contacto */
         .contact-info {
             display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            gap: 1.5rem; 
+            justify-content: center; 
+            gap: 1rem; 
             max-width: 400px; 
             margin: 0 auto;
-            font-size: 1rem; 
-            color: var(--color-texto);
         }
-        .contact-info a {
-            text-decoration: none; 
-            color: var(--color-texto-claro); 
-            display: flex; 
-            align-items: center; 
-            gap:0.5rem; 
-            transition: background 0.2s, transform 0.2s;
-            font-size:1rem; 
-            padding:0.5rem 1rem; 
-            border-radius:50px; 
-            background: var(--color-gris-oscuro);
-        }
-        .contact-info a i { font-size: 1.2rem; }
-        .contact-info a:hover { transform: translateY(-2px); }
 
-        .contact-info a[href*="wa.me"] { background: #25D366; }
-        .contact-info a[href*="facebook"] { background: #3b5998; }
-        .contact-info a[href*="mailto"] { background: var(--color-gris-oscuro); }
+        .icon-circle {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.5rem;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .icon-circle:hover {
+            transform: scale(1.1);
+        }
+        
+        .icon-circle.whatsapp:hover {
+            background-color: #20b954;
+        }
+        
+        .icon-circle.facebook:hover {
+            background-color: #145dbf;
+        }
+        
+        .icon-circle.tiktok:hover {
+            background-color: #444444;
+        }
 
         footer { 
             background: var(--color-gris-claro); 
@@ -474,19 +509,21 @@
         @media (max-width: 768px) {
             header nav { display: none; }
             .logo { font-size:1.2rem; }
-            .contact-info { width: 100%; }
             .products { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
         }
         @media (max-width: 480px) {
             .filters { flex-direction: column; }
-            .contact-info a { font-size:0.9rem; padding:0.4rem 0.8rem; }
         }
     </style>
 </head>
 <body>
     <header>
         <div class="header-content">
-            <div class="logo"><i class="fas fa-store"></i> Mi Tienda</div>
+            <div class="logo">
+                <a href="#inicio">
+                    <img src="https://i.ibb.co/swShCSf/image.png" alt="Logo de Mi Tienda" style="width:100px; height:40px;">
+                </a>
+            </div>
             <nav>
                 <a href="#inicio"><i class="fas fa-home"></i> Inicio</a>
                 <a href="#productos"><i class="fas fa-tags"></i> Productos</a>
@@ -497,6 +534,7 @@
             </div>
         </div>
     </header>
+    
 
     <div class="content-offset" id="inicio"></div>
     <div class="banner">
@@ -510,18 +548,10 @@
 
     <div class="filters container" id="productos">
         <input type="text" id="searchInput" placeholder="Buscar productos...">
-        <select id="categorySelect">
-            <option value="">Todos los tipos</option>
-            <option value="AUDIFONO CABLE">AUDIFONO CABLE</option>
-            <option value="AUDIFONO BLUETOOTH TWS">AUDIFONO BLUETOOTH TWS</option>
-            <option value="PARLANTE BLUETOOTH">PARLANTE BLUETOOTH</option>
-        </select>
     </div>
 
-    <!-- Contenedor de productos (inicialmente con skeletons) -->
-    <section class="products" id="productsSection">
-        <!-- Skeletons se insertarán aquí dinámicamente -->
-    </section>
+    <!-- Contenedor de productos -->
+    <section class="products" id="productsSection"></section>
 
     <div class="cart-modal" id="cartModal">
         <div class="cart-modal-header">
@@ -537,15 +567,16 @@
     <div class="contact-section" id="contacto">
         <h2>Contáctanos</h2>
         <div class="contact-info">
-            <a href="https://wa.me/TU_NUMERO" target="_blank">
-                <i class="fab fa-whatsapp"></i> WhatsApp
+            <a href="https://www.tiktok.com/@.sagitario251?_t=8s3DdCyBMZB&_r=1" target="_blank" class="icon-circle tiktok" title="TikTok">
+                <i class="bi bi-tiktok" style="font-size: 2rem; color: black;"></i>
             </a>
-            <a href="https://www.facebook.com/TU_PAGINA" target="_blank">
-                <i class="fab fa-facebook"></i> Facebook
+            <a href="https://wa.me/+51944654438" target="_blank" class="icon-circle whatsapp" title="WhatsApp">
+                <i class="bi bi-whatsapp" style="font-size: 2rem; color: green;"></i>
             </a>
-            <a href="mailto:tu_correo@ejemplo.com">
-                <i class="fas fa-envelope"></i> Email
+            <a href="https://www.facebook.com/share/1AJK56zFmt/?mibextid=qi2Omg" target="_blank" class="icon-circle facebook" title="Facebook">
+                <i class="bi bi-facebook" style="font-size: 2rem; color: blue;"></i>
             </a>
+            
         </div>
     </div>
 
@@ -588,14 +619,12 @@
 
       const productsSection = document.getElementById('productsSection');
       const searchInput = document.getElementById('searchInput');
-      const categorySelect = document.getElementById('categorySelect');
 
       let allProducts = [];
       let currentModalProduct = null;
       let isLoading = true;
 
       const showSkeleton = () => {
-        // Genera 8 skeletons (puedes ajustar la cantidad según tus necesidades)
         for (let i = 0; i < 8; i++) {
           const skeletonCard = document.createElement('div');
           skeletonCard.className = 'product skeleton';
@@ -610,7 +639,7 @@
       };
 
       const loadProducts = async () => {
-        showSkeleton(); // Muestra los skeletons mientras carga
+        showSkeleton();
         try {
           const querySnapshot = await getDocs(collection(db, 'products'));
           allProducts = [];
@@ -624,11 +653,10 @@
       };
 
       const renderProducts = (productArray) => {
-        if (isLoading) return; // Evita renderizar productos si aún está cargando
-
-        productsSection.innerHTML = ''; // Limpia los skeletons
+        if (isLoading) return;
+        productsSection.innerHTML = '';
         if (productArray.length === 0) {
-          productsSection.innerHTML = "<p>No hay productos que coincidan con tu búsqueda o tipo.</p>";
+          productsSection.innerHTML = "<p>No hay productos que coincidan con tu búsqueda.</p>";
           return;
         }
 
@@ -640,15 +668,14 @@
           productEl.setAttribute('data-index', index);
 
           productEl.innerHTML = `
-              <img src="${imgURL}" alt="${productData.descripcion}" class="product-img">
-              <h3>${productData.descripcion}</h3>
+              <img src="${imgURL}" alt="${productData.title}" class="product-img">
+              <h3>${productData.title}</h3>
               <div class="details">
                 ${productData.sagitario ? `<div><strong>Marca/Línea:</strong> ${productData.sagitario}</div>` : ''}
-                ${productData.tipo ? `<div><strong>Tipo:</strong> ${productData.tipo}</div>` : ''}
-                ${productData.codigo ? `<div><strong>Código:</strong> ${productData.codigo}</div>` : ''}
+                ${productData.description ? `<div><strong>Descripción:</strong> ${productData.description}</div>` : ''}
               </div>
               <p class="price">$${priceNumber.toFixed(2)}</p>
-              <button data-name="${productData.descripcion}" data-price="${priceNumber}" data-image="${imgURL}">
+              <button data-name="${productData.title}" data-price="${priceNumber}" data-image="${imgURL}">
                 <i class="fas fa-cart-plus"></i> Agregar
               </button>
           `;
@@ -657,19 +684,16 @@
       };
 
       const filterProducts = () => {
-        if (isLoading) return; // No filtrar mientras carga
+        if (isLoading) return;
         const searchText = searchInput.value.toLowerCase();
-        const selectedCategory = categorySelect.value;
         const filtered = allProducts.filter(prod => {
-          const matchesName = prod.descripcion?.toLowerCase().includes(searchText);
-          const matchesCategory = selectedCategory === '' || prod.tipo === selectedCategory;
-          return matchesName && matchesCategory;
+          const matchesName = prod.title?.toLowerCase().includes(searchText) || prod.description?.toLowerCase().includes(searchText);
+          return matchesName;
         });
         renderProducts(filtered);
       };
 
       searchInput.addEventListener('input', filterProducts);
-      categorySelect.addEventListener('change', filterProducts);
       loadProducts();
 
       // Modal de producto
@@ -683,11 +707,10 @@
 
       const openProductModal = (product) => {
         modalProductImg.src = product.image || 'https://via.placeholder.com/150';
-        modalProductName.textContent = product.descripcion;
+        modalProductName.textContent = product.title;
         const detailsArr = [];
         if (product.sagitario) detailsArr.push(`Marca/Línea: ${product.sagitario}`);
-        if (product.tipo) detailsArr.push(`Tipo: ${product.tipo}`);
-        if (product.codigo) detailsArr.push(`Código: ${product.codigo}`);
+        if (product.description) detailsArr.push(`Descripción: ${product.description}`);
         modalProductDetails.innerHTML = detailsArr.map(d => `<div>${d}</div>`).join('') || '<div>Sin detalles adicionales</div>';
         modalProductPrice.textContent = `$${Number(product.price).toFixed(2)}`;
         productModalOverlay.classList.add('open');
@@ -704,8 +727,8 @@
 
       modalAddToCartBtn.addEventListener('click', () => {
         if (currentModalProduct) {
-          const { descripcion, price, image } = currentModalProduct;
-          addToCart(descripcion, Number(price), image || 'https://via.placeholder.com/150');
+          const { title, price, image } = currentModalProduct;
+          addToCart(title, Number(price), image || 'https://via.placeholder.com/150');
           closeProductModal();
         }
       });
@@ -765,12 +788,25 @@
         cartModal.classList.remove('open');
       });
 
+      // Al finalizar compra, redirigir a WhatsApp con el mensaje de los productos
       checkoutBtn.addEventListener('click', () => {
-        showToast('Compra finalizada. ¡Gracias!');
+        if (cart.length === 0) {
+          showToast('No hay productos en el carrito.');
+          return;
+        }
+
+        let message = "Hola, estos son los productos que deseo comprar:%0A";
+        cart.forEach(item => {
+          message += `- ${item.name} por $${item.price.toFixed(2)}%0A`;
+        });
+
+        // Vaciar el carrito antes de redirigir
         cart = [];
         saveCartToLocalStorage();
         updateCartDOM();
-        cartModal.classList.remove('open');
+
+        // Redirigir a WhatsApp con el mensaje
+        window.location.href = `https://wa.me/51944654438?text=${message}`;
       });
 
       // Delegación de eventos para agregar al carrito desde productsSection
@@ -778,7 +814,7 @@
         const productCard = e.target.closest('.product');
         if (!productCard) return;
 
-        if (productCard.classList.contains('skeleton')) return; // Ignorar los skeletons
+        if (productCard.classList.contains('skeleton')) return;
 
         if (e.target.closest('button')) {
           e.stopPropagation();

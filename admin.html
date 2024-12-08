@@ -323,36 +323,35 @@
         <div class="add-product">
             <h2>Agregar Producto</h2>
 
+            <!-- Marca/Línea -->
             <div class="form-group">
                 <label for="productSagitario"><i class="fas fa-tag"></i> Marca/Línea:</label>
                 <input type="text" id="productSagitario" placeholder="Ej: JBL, XIAOMI..." required/>
             </div>
 
+            <!-- Título -->
             <div class="form-group">
-                <label for="productTipo"><i class="fas fa-list"></i> Tipo:</label>
-                <input type="text" id="productTipo" placeholder="Ej: AUDIFONO CABLE, PARLANTE BLUETOOTH..." required/>
+                <label for="productTitle"><i class="fas fa-heading"></i> Título:</label>
+                <input type="text" id="productTitle" placeholder="Ej: Audífono Inalámbrico X" required/>
             </div>
 
+            <!-- Descripción -->
             <div class="form-group">
-                <label for="productCodigo"><i class="fas fa-barcode"></i> Código:</label>
-                <input type="text" id="productCodigo" placeholder="Ej: 000480" required/>
+                <label for="productDescripcion"><i class="fas fa-info-circle"></i> Descripción:</label>
+                <input type="text" id="productDescripcion" placeholder="Ej: Audífono con cancelación de ruido..." required/>
             </div>
 
-            <!-- Sección para seleccionar imagen a subir -->
+            <!-- Precio -->
+            <div class="form-group">
+                <label for="productPrecio"><i class="fas fa-dollar-sign"></i> Precio:</label>
+                <input type="number" step="0.01" id="productPrecio" placeholder="Ej: 45.00" required/>
+            </div>
+
+            <!-- Imagen -->
             <div class="form-group imgbb-upload">
                 <label><i class="fas fa-image"></i> Seleccionar Imagen:</label>
                 <input type="file" id="imgFile" accept="image/*">
                 <img id="imgPreview" alt="Previsualización Imagen"/>
-            </div>
-
-            <div class="form-group">
-                <label for="productDescripcion"><i class="fas fa-info-circle"></i> Descripción:</label>
-                <input type="text" id="productDescripcion" placeholder="Ej: AUDIFONO CB JBL TUNE 110 BLANCO" required/>
-            </div>
-
-            <div class="form-group">
-                <label for="productPrecio"><i class="fas fa-dollar-sign"></i> Precio:</label>
-                <input type="number" step="0.01" id="productPrecio" placeholder="Ej: 45.00" required/>
             </div>
 
             <button id="addProductBtn"><i class="fas fa-plus-circle"></i> Agregar Producto</button>
@@ -366,10 +365,10 @@
                 <thead>
                     <tr>
                         <th>Marca/Línea</th>
-                        <th>Tipo</th>
-                        <th>Código</th>
+                        <th>Título</th>
                         <th>Descripción</th>
                         <th>Precio</th>
+                        <th>Imagen</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -388,21 +387,14 @@
         <div class="modal-content">
             <button class="close-modal" id="closeEditModalBtn">&times;</button>
             <h3>Editar Producto</h3>
+
             <div class="form-group">
                 <label for="editSagitario"><i class="fas fa-tag"></i> Marca/Línea:</label>
                 <input type="text" id="editSagitario"/>
             </div>
             <div class="form-group">
-                <label for="editTipo"><i class="fas fa-list"></i> Tipo:</label>
-                <input type="text" id="editTipo"/>
-            </div>
-            <div class="form-group">
-                <label for="editCodigo"><i class="fas fa-barcode"></i> Código:</label>
-                <input type="text" id="editCodigo"/>
-            </div>
-            <div class="form-group">
-                <label for="editImagen"><i class="fas fa-image"></i> Imagen (URL):</label>
-                <input type="text" id="editImagen"/>
+                <label for="editTitle"><i class="fas fa-heading"></i> Título:</label>
+                <input type="text" id="editTitle"/>
             </div>
             <div class="form-group">
                 <label for="editDescripcion"><i class="fas fa-info-circle"></i> Descripción:</label>
@@ -412,6 +404,11 @@
                 <label for="editPrecio"><i class="fas fa-dollar-sign"></i> Precio:</label>
                 <input type="number" step="0.01" id="editPrecio"/>
             </div>
+            <div class="form-group">
+                <label for="editImagen"><i class="fas fa-image"></i> Imagen (URL):</label>
+                <input type="text" id="editImagen"/>
+            </div>
+
             <button id="saveChangesBtn"><i class="fas fa-save"></i> Guardar Cambios</button>
             <button id="cancelEditBtn" class="close-modal"><i class="fas fa-times"></i> Cancelar</button>
         </div>
@@ -439,8 +436,7 @@
 
         // Elementos del DOM
         const productSagitarioInput = document.getElementById('productSagitario');
-        const productTipoInput = document.getElementById('productTipo');
-        const productCodigoInput = document.getElementById('productCodigo');
+        const productTitleInput = document.getElementById('productTitle');
         const productDescripcionInput = document.getElementById('productDescripcion');
         const productPrecioInput = document.getElementById('productPrecio');
         const addProductBtn = document.getElementById('addProductBtn');
@@ -452,11 +448,10 @@
         // Edición
         const editModal = document.getElementById('editModal');
         const editSagitario = document.getElementById('editSagitario');
-        const editTipo = document.getElementById('editTipo');
-        const editCodigo = document.getElementById('editCodigo');
-        const editImagen = document.getElementById('editImagen');
+        const editTitle = document.getElementById('editTitle');
         const editDescripcion = document.getElementById('editDescripcion');
         const editPrecio = document.getElementById('editPrecio');
+        const editImagen = document.getElementById('editImagen');
         const saveChangesBtn = document.getElementById('saveChangesBtn');
         const closeEditModalBtn = document.getElementById('closeEditModalBtn');
         const cancelEditBtn = document.getElementById('cancelEditBtn');
@@ -500,10 +495,10 @@
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td>${prod.sagitario}</td>
-                    <td>${prod.tipo}</td>
-                    <td>${prod.codigo}</td>
-                    <td>${prod.descripcion}</td>
+                    <td>${prod.title}</td>
+                    <td>${prod.description}</td>
                     <td>$${prod.price.toFixed(2)}</td>
+                    <td>${prod.image ? `<img src="${prod.image}" alt="Imagen" style="height:40px;">` : ''}</td>
                     <td class="action-buttons">
                         <button class="edit-btn" data-id="${prod.id}"><i class="fas fa-edit"></i> Editar</button>
                         <button class="delete-btn" data-id="${prod.id}"><i class="fas fa-trash-alt"></i> Eliminar</button>
@@ -546,13 +541,12 @@
         // Agregar nuevo producto
         addProductBtn.addEventListener('click', async () => {
             const sagitario = productSagitarioInput.value.trim();
-            const tipo = productTipoInput.value.trim();
-            const codigo = productCodigoInput.value.trim();
-            const descripcion = productDescripcionInput.value.trim();
+            const title = productTitleInput.value.trim();
+            const description = productDescripcionInput.value.trim();
             const precio = parseFloat(productPrecioInput.value.trim());
 
             // Validar datos
-            if (!sagitario || !tipo || !codigo || !descripcion || isNaN(precio) || precio <= 0) {
+            if (!sagitario || !title || !description || isNaN(precio) || precio <= 0) {
                 errorMessage.style.display = 'block';
                 errorMessage.textContent = "Por favor, completa todos los campos con datos válidos.";
                 return;
@@ -589,17 +583,15 @@
             try {
                 await addDoc(collection(db, "products"), {
                     sagitario: sagitario,
-                    tipo: tipo,
-                    codigo: codigo,
-                    image: imageUrl,
-                    descripcion: descripcion,
-                    price: precio
+                    title: title,
+                    description: description,
+                    price: precio,
+                    image: imageUrl
                 });
                 showToast("Producto agregado con éxito");
                 // Limpiar el formulario
                 productSagitarioInput.value = "";
-                productTipoInput.value = "";
-                productCodigoInput.value = "";
+                productTitleInput.value = "";
                 productDescripcionInput.value = "";
                 productPrecioInput.value = "";
                 imgFileInput.value = "";
@@ -635,11 +627,10 @@
 
             currentEditId = id;
             editSagitario.value = prod.sagitario;
-            editTipo.value = prod.tipo;
-            editCodigo.value = prod.codigo;
-            editImagen.value = prod.image;
-            editDescripcion.value = prod.descripcion;
+            editTitle.value = prod.title;
+            editDescripcion.value = prod.description;
             editPrecio.value = prod.price;
+            editImagen.value = prod.image;
 
             editModal.classList.add('open');
         }
@@ -657,21 +648,24 @@
         saveChangesBtn.addEventListener('click', async () => {
             if (!currentEditId) return;
             const sagitario = editSagitario.value.trim();
-            const tipo = editTipo.value.trim();
-            const codigo = editCodigo.value.trim();
-            const imagen = editImagen.value.trim();
-            const descripcion = editDescripcion.value.trim();
+            const title = editTitle.value.trim();
+            const description = editDescripcion.value.trim();
             const precio = parseFloat(editPrecio.value.trim());
+            const imagen = editImagen.value.trim();
 
             // Validar datos
-            if (!sagitario || !tipo || !codigo || !descripcion || isNaN(precio) || precio <= 0) {
+            if (!sagitario || !title || !description || isNaN(precio) || precio <= 0) {
                 showToast("Datos inválidos, revisa el formulario.");
                 return;
             }
 
             try {
                 await updateDoc(doc(db, "products", currentEditId), {
-                    sagitario, tipo, codigo, image: imagen || "", descripcion, price: precio
+                    sagitario, 
+                    title, 
+                    description, 
+                    price: precio, 
+                    image: imagen || ""
                 });
                 showToast("Producto actualizado");
                 closeEditModal();
